@@ -4,7 +4,7 @@
  * You should be able to add new items to this list and they'll shop up on the map.
  */
 
-const kebabShopTestData = [
+const KebabShopTestData = [
     {
         id: 1,
         name: 'Turkish Halal Pide House Yarralumla',

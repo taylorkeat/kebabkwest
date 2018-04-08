@@ -10,39 +10,46 @@
         <script src="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/js/bootstrap.min.js" integrity="sha384-JZR6Spejh4U02d8jOt6vLEHfe/JQGiRRSQQxSfFWpi1MquVdAyjUar5+76PVCmYl" crossorigin="anonymous"></script>
         <script src="https://maps.googleapis.com/maps/api/js?key=AIzaSyCeCEUnl_SiSKQktee85HKTZ5q7HkY_XMM"></script>
         <script src="js/lib/knockout/knockout-3.4.2.js"></script>
+        <script src="js/global.js"></script>
         <script src="js/storedata.js"></script>
+        <script src="js/map.js"></script>
         <script src="js/geo.js"></script>
         <script src="js/home.js"></script>
     </head>
     <body>
         <main role="main" class="container text-center">
             <h1>Kebab Kwest</h1>
-            <div class="card mx-auto" id="mapWrapper">
-                <div id="map" class="card-top">
-                </div>
-                <div class="card-body">
-                    <div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Show open stores only
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Show open stores only</a>
-                                <a class="dropdown-item" href="#">Show open and closed stores</a>
-                            </div>
-                        </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Show all ratings
-                            </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Show all ratings</a>
-                                <a class="dropdown-item" href="#">Show only 3+</a>
-                            </div>
-                        </div>
+            <!-- Map component template -->
+            <script type="text/html" id="mapTemplate">
+                <div class="card mx-auto map-wrapper">
+                    <div class="card-top map">
                     </div>
+                    <div class="card-body">
+                        <div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Show open stores only
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Show open stores only</a>
+                                    <a class="dropdown-item" href="#">Show open and closed stores</a>
+                                </div>
+                            </div>
+                            <div class="btn-group">
+                                <button type="button" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
+                                    Show all ratings
+                                </button>
+                                <div class="dropdown-menu">
+                                    <a class="dropdown-item" href="#">Show all ratings</a>
+                                    <a class="dropdown-item" href="#">Show only 3+</a>
+                                </div>
+                            </div>
+                        </div>
+                    <div>
                 </div>
-            </div>
+            </script>
+            <!-- Map target element -->
+            <div data-bind="component: 'mapComponent'"></div>
         </main>
         <footer class="footer text-center">
             <div class="container">

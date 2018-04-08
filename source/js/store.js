@@ -5,7 +5,7 @@ $(function() {
     // Handle display of store data and bindings for buttons e.g. rating, notes
     const qs = new URLSearchParams(window.location.search);
     const id = parseInt(qs.get('id'));
-    const store = kebabShopTestData.find((s) => s.id === id);
+    const store = KebabShopTestData.find((s) => s.id === id);
 
     if (typeof(store) === 'undefined') {
         console.warn('Cannot find store with id ' + id);
@@ -27,8 +27,6 @@ $(function() {
         this.handleBack = function(event) {
 
             console.log('Back button clicked ', event);
-
-            
 
         };
 

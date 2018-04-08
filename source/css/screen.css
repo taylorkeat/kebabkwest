@@ -1,9 +1,9 @@
 
 
-#mapWrapper {
+.map-wrapper {
     width: 600px;
 }
 
-#map {
+.map {
     height: 600px;
 }
