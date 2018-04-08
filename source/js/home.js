@@ -3,33 +3,11 @@
 $(function() {
 
     /**
-     * This is dummy data for kebab shops to get the prototype up and running.
-     * You should be able to add new items to this list and they'll shop up on the map.
-     */
-    const kebabShopTestData = [
-        {
-            id: 1,
-            name: 'Turkish Halal Pide House Yarralumla',
-            latitude: -35.3073036,
-            longitude: 149.0980729,
-            rating: 5
-        },
-        {
-            id: 2,
-            name: 'Charnwood Turkish Pide',
-            latitude: -35.2047226,
-            longitude: 149.0342812,
-            rating: 5
-        }
-    ];
-
-    /**
      * This initialises the main google maps 'map' with the starting lat/long
      */
     const initGoogleMaps = function(lat, long) {
 
         console.log('Initialising google maps API with ', lat, long);
-
         const userLatLong = new google.maps.LatLng(lat, long);
 
         const mapOptions = {
@@ -69,6 +47,11 @@ $(function() {
                 title: k.name,
                 label: k.name,
                 map: map
+            });
+
+            // Handle click event for each marker
+            shopMarker.addListener('click', function(event) {
+                window.location = 'store.html?id=' + k.id;
             });
 
        });

@@ -25,12 +25,10 @@ const GeoLocation = function() {
             console.log('Device has geolocation capabilities');
 
             const onSuccess = function(pos) {
-                console.log('Geolocation success, position is ', pos);
                 def.resolve(pos);
             };
 
             const onFailure = function(error, message) {
-                console.warn('Geolocation failure.');
                 def.reject(error, message);
             };
 

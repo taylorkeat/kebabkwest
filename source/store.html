@@ -12,33 +12,39 @@
         <script src="js/lib/knockout/knockout-3.4.2.js"></script>
         <script src="js/storedata.js"></script>
         <script src="js/geo.js"></script>
-        <script src="js/home.js"></script>
+        <script src="js/store.js"></script>
     </head>
     <body>
         <main role="main" class="container text-center">
             <h1>Kebab Kwest</h1>
             <div class="card mx-auto" id="mapWrapper">
-                <div id="map" class="card-top">
+                <!-- This is the target for the Knockout HTML template below -->
+                <div id="store" class="card-top" data-bind="template: {name: 'storeTemplate'}">
                 </div>
+                <!-- This is the Knockout HTML template for the store element -->
+                <script type="text/html" id="storeTemplate">
+                    <h2 data-bind="text: name"></h2>
+                    <p>...Show current rating...</p>
+                    <p>...Show opening hours...</p>
+                    <p>...Show comments and other ratings...</p>
+                </script>
                 <div class="card-body">
                     <div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Show open stores only
+                        <div class="btn-group float-left">
+                            <button type="button" class="btn btn-lg" data-bind="click: handleBack">
+                                Back
                             </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Show open stores only</a>
-                                <a class="dropdown-item" href="#">Show open and closed stores</a>
-                            </div>
                         </div>
-                        <div class="btn-group">
-                            <button type="button" class="btn btn-lg dropdown-toggle" data-toggle="dropdown" aria-haspopup="true" aria-expanded="false">
-                                Show all ratings
+                        <div class="btn-group float-right">
+                            <button type="button" class="btn btn-lg" data-bind="click: handleDirections">
+                                Directions
                             </button>
-                            <div class="dropdown-menu">
-                                <a class="dropdown-item" href="#">Show all ratings</a>
-                                <a class="dropdown-item" href="#">Show only 3+</a>
-                            </div>
+                            <button type="button" class="btn btn-lg" data-bind="click: handleRatings">
+                                Ratings
+                            </button>
+                            <button type="button" class="btn btn-lg" data-bind="click: handleAddNote">
+                                Add Note
+                            </button>
                         </div>
                     </div>
                 </div>
