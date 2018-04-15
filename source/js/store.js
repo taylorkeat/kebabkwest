@@ -28,6 +28,8 @@ $(function() {
 
             console.log('Back button clicked ', event);
 
+            history.back();
+
         };
 
         // Handle when the directions button is clicked

@@ -19,11 +19,11 @@ $(function() {
         });
 
         self.renderMap = function() {
-            const pos = self.latLong();
+            const latLong = self.latLong();
             maps.render(
                 self.mapElement, 
-                pos.coords.latitude, 
-                pos.coords.longitude,
+                latLong.lat, 
+                latLong.long,
                 KebabShopTestData,
                 self.handleStoreClick
             );
@@ -34,12 +34,48 @@ $(function() {
             window.location = 'store.html?id=' + id;
         };
 
+        self.checkSessionForUserLatLong = function() {
+            if (typeof(Storage) !== 'undefined' &&
+                sessionStorage.getItem('userLatLong') !== null) {
+                const userLatLong = JSON.parse(sessionStorage.getItem('userLatLong'));
+                console.log('Found user lat long in session ', userLatLong);
+                return userLatLong;
+            }
+            return false;
+        },
+
+        self.logUserLatLongInSession = function(userLatLong) {
+            if (typeof(Storage) !== 'undefined') {
+                console.log('Session storage available');
+                sessionStorage.setItem('userLatLong', JSON.stringify(userLatLong));
+            }
+            else {
+                console.warn('Session storage not available');
+            }
+        },
+       
         self.requestGeoLocation = function() {
+
+            const sessionUserLatLong = self.checkSessionForUserLatLong();
+            if (sessionUserLatLong) {
+                console.log('Found position in session ', sessionUserLatLong);
+                self.latLong(sessionUserLatLong);
+                return;
+            }
 
             geo.find()
                 .then(function (pos) {
+
                     console.log('Geolocation success! position is ', pos);
-                    self.latLong(pos);
+
+                    const userLatLong = {
+                        lat: pos.coords.latitude, 
+                        long: pos.coords.longitude
+                    };
+
+                    self.logUserLatLongInSession(userLatLong);
+                    self.latLong(userLatLong);
+
                 }).fail(function(error) {
 
                     // TODO: This is where we'll handle asking for a specific address
