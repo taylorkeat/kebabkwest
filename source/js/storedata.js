@@ -46,5 +46,24 @@ const KebabShopTestData = [
             {day: 'Sunday', open: '10:00', close: '23:00'}
         ],
         comments: []
-    }
+     },
+    {
+        id: 3,
+        name: 'Ogys Kebab Express',
+        mainImageUrl: 'img/OgysKebabExpress1.png',
+        latitude: -34.773938,
+        longitude: 149.691431,
+        currentAverageRating: 4.3,
+        numberofRatings: 43,
+        openingHours: [
+            {day: 'Monday', open: '10:30', close: '21:30'},
+            {day: 'Tuesday', open: '10:30', close: '21:30'},
+            {day: 'Wednesday', open: '10:00', close: '23:30'},
+            {day: 'Thursday', open: '10:00', close: '23:00'},
+            {day: 'Friday', open: '10:00', close: '23:00'},
+            {day: 'Saturday', open: '10:00', close: '23:00'},
+            {day: 'Sunday', open: '10:00', close: '23:00'}
+        ],
+        comments: []
+    
 ];
