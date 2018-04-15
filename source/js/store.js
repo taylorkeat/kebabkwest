@@ -14,14 +14,25 @@ $(function() {
    
     const StoreViewModel = function() {
 
-        this.id = store.id;
-        this.name = store.name;
-        this.currentAverageRating = ko.observable(store.currentAverageRating);
-        this.numberofRatings = ko.observable(store.numberofRatings);
-        this.latitude = store.latitude;
-        this.longitude = store.longitude;
-        this.openingHours = store.openingHours;
-        this.comments = ko.observable(store.comments);
+        const self = this;
+
+        self.id = store.id;
+        self.name = store.name;
+        self.mainImageUrl = store.mainImageUrl;
+        self.currentAverageRating = ko.observable(store.currentAverageRating);
+        self.numberofRatings = ko.observable(store.numberofRatings);
+        self.latitude = store.latitude;
+        self.longitude = store.longitude;
+        self.openingHours = store.openingHours;
+        self.comments = ko.observable(store.comments);
+
+        self.ratingStars = ko.pureComputed(function () {
+            return new Array(self.currentAverageRating());
+        });
+
+        self.latestComments = ko.pureComputed(function () {
+            return self.comments().slice(0, 3);
+        });
 
         // Handle when the back button is clicked
         this.handleBack = function(event) {

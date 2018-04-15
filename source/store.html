@@ -3,6 +3,7 @@
     <head>
         <title>Kebab Kwest</title>
         <link rel="stylesheet" href="https://maxcdn.bootstrapcdn.com/bootstrap/4.0.0/css/bootstrap.min.css" integrity="sha384-Gn5384xqQ1aoWXA+058RXPxPg6fy4IWvTNh0E263XmFcJlSAwiGgFAW/dAiS6JXm" crossorigin="anonymous">
+        <link rel="stylesheet" href="lib/open-iconic-master/font/css/open-iconic-bootstrap.css"/>
         <link rel="stylesheet" href="css/screen.css"/>
         <link rel="stylesheet" href="css/sticky-footer.css"/>
         <script src="https://code.jquery.com/jquery-3.2.1.slim.min.js" integrity="sha384-KJ3o2DKtIkvYIK3UENzmM7KCkRr/rE9/Qpg6aAZGJwFDMVNA/GpGFF93hXpG5KkN" crossorigin="anonymous"></script>
@@ -26,8 +27,73 @@
                 <!-- This is the Knockout HTML template for the store element -->
                 <script type="text/html" id="storeTemplate">
                     <h2 data-bind="text: name"></h2>
-                    <p>...Show current rating...</p>
-                    <p>...Show opening hours...</p>
+                    <img 
+                        class="img-fluid rounded mx-auto w-100 p-3 store-img-main" 
+                        data-bind="attr:{src: mainImageUrl}"
+                    />
+                    <div class="container-fluid">
+                        <div class="row">
+                            <div class="col">
+                                <section class="card rating">
+                                    <div class="card-body">
+                                        <h4>Current Rating</h4>
+                                        <span data-bind="foreach: ratingStars">
+                                            <span class="oi oi-star rating-star"/>
+                                        </span>
+                                        <p>&nbsp;</p>
+                                        <h5>Latest Comments</h5>
+                                        <p data-bind="if: latestComments.length === 0">No latest comments</p>
+                                        <ul 
+                                            class="list-group" 
+                                            data-bind="foreach: latestComments"
+                                        >
+                                            <li class="list-group-item">
+                                                <p 
+                                                    class="text-left"
+                                                    data-bind="text: comment"
+                                                />
+                                                <div 
+                                                    class="float-left"
+                                                    data-bind="text: author"
+                                                />
+                                                <div 
+                                                    class="float-right text-sm"
+                                                    data-bind="text: time"
+                                                />
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+                            <div class="col">
+                                <section class="card hours">
+                                    <div class="card-body">
+                                        <h4>Opening Hours</h4>
+                                        <ul class="list-group" data-bind="foreach: openingHours">
+                                            <li class="list-group-item text-left">
+                                                <span
+                                                    data-bind="text: $data.day"
+                                                />
+                                                <span class="float-right">
+                                                    <span 
+                                                        class="store-hours" 
+                                                        data-bind="text: $data.open"
+                                                    /> - 
+                                                    <span
+                                                        class="store-hours"
+                                                        data-bind="text: $data.close"
+                                                    />
+                                                </span>
+                                            </li>
+                                        </ul>
+                                    </div>
+                                </section>
+                            </div>
+                        </div>
+                    </div>
+
+                    <h3>Other Stuff.</h3>
+                   
                     <p>...Show comments and other ratings...</p>
                 </script>
                 <div class="card-body">

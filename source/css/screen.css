@@ -1,9 +1,16 @@
-
-
 .map-wrapper {
     width: 600px;
 }
 
 .map {
     height: 600px;
+}
+
+.store-img-main {
+    margin: 10px;
+
+}
+
+.store-hours {
+    font-weight: bold;
 }
